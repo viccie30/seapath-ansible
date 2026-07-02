@@ -40,6 +40,7 @@ jobs:
       compliance_matrices_folder: yocto
       runner-label: "runner-SFL"
       inventories-repository: "git@github.com:seapath-ci/ci-seapath-yocto-inventories.git"
+      inventories-repository-branch: "add-inventories"
       hyp-inventories: ${{ matrix.hyp-inventories }}
       hyp-configure-playbooks: >-
         playbooks/ci_standalone_setup.yaml
