@@ -29,6 +29,7 @@ jobs:
       runner-label: "runner-SFL"
       inventories-repository: "git@github.com:seapath-ci/ci-seapath-sles-inventories.git"
       hyp-inventories: ${{ matrix.hyp-inventories }}
+      inventories-repository-branch: add-inventories
       hyp-configure-playbooks: >-
         playbooks/ci_standalone_setup.yaml
         playbooks/seapath_setup_hardening.yaml
