@@ -49,6 +49,21 @@ after this role runs.
 
 Set `cephadm_prometheus_exporter_enabled: false` to skip this step.
 
+## OSD volume handling
+
+Before adding OSDs, the role decides for each OSD volume whether it must be
+wiped, using a single rule: **a volume is kept untouched if and only if it
+hosts an OSD claimed by the running cluster** (the OSD uuid stored in the LVM
+tags written by ceph-volume is registered in the cluster OSD map). Any other
+volume listed for Ceph is zapped and enrolled as a new OSD.
+
+Consequences:
+
+- Re-running the playbook on a live cluster never touches existing OSDs.
+- Reinstalling a cluster from scratch (new fsid, empty OSD map) automatically
+  wipes and re-enrolls volumes containing data from the previous installation.
+- A replaced machine has its volume re-enrolled without manual cleanup.
+
 ## Example Playbook
 
 ```yaml
